@@ -64,7 +64,7 @@ export const Movies = ({
     }
   };
 
-  // Helper function to render a MovieCard component for each movie
+  // Helper function to render a MovieCard component for each movie on a list
   const renderMovieCard = (movie) => {
     const moviesInList = selectedListMovies
       ? selectedListMovies.map((movie) => {

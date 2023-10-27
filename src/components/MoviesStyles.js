@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const MoviesContainer = styled.div`
   padding: 0 3rem;
   margin: 0 auto;
+  max-width: 1200px;
 `;
 
 export const MoviesGrid = styled.div`

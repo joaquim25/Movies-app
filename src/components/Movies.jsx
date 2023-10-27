@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
-import { MoviesContainer, MoviesGrid, PageButtons, PageInfo } from "./MoviesStyles";
+import {
+  MoviesContainer,
+  MoviesGrid,
+  PageButtons,
+  PageInfo,
+} from "./MoviesStyles";
 import { fetchMovies } from "../utils";
 import { useSelector } from "react-redux";
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -18,6 +23,7 @@ export const Movies = ({
     currPage: 1,
     nextPage: null,
     prevPage: null,
+    pageTotal: null,
   });
   const searchTerm = useSelector((state) => state.search.searchTerm);
 
@@ -32,6 +38,7 @@ export const Movies = ({
           ...pages,
           nextPage: moviesData.nextPage,
           prevPage: moviesData.prevPage,
+          pageTotal: moviesData.pageTotal,
         });
         setMovies(moviesData.items);
         setLoading(false);
@@ -102,7 +109,7 @@ export const Movies = ({
         )}
       </PageButtons>
       <PageInfo>
-        Page {pages.currPage} / {pages.nextPage || pages.currPage}
+        Page {pages.currPage} / {pages.pageTotal}
       </PageInfo>
     </MoviesContainer>
   );

@@ -21,19 +21,12 @@ export const MoviesGrid = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
   @media (min-width: 900px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (min-width: 1440px) {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 `;
 

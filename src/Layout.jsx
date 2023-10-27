@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { logOut } from "./store/user/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { checkAuthTokenPeriodically } from "./utils";
 
 const Layout = () => {

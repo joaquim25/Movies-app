@@ -36,3 +36,44 @@ export const MoviesGrid = styled.div`
     grid-template-columns: repeat(7, 1fr);
   }
 `;
+
+export const PageButtons = styled.div`
+  justify-content: center;
+  display: flex;
+
+  & .prevBtn {
+    margin-right: auto;
+  }
+
+  & .nextBtn {
+    margin-left: auto;
+  }
+
+  & button {
+    cursor: pointer;
+    background-color: rgba(100, 100, 100, 0.8);
+    width: 70px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.5);
+
+    & svg {
+      margin: 0 auto;
+      position: relative;
+      top: 2px;
+
+      & polyline {
+        stroke: white;
+      }
+    }
+  }
+`;
+
+export const PageInfo = styled.p`
+  text-align: center;
+
+  margin: 20px 0;
+  font-size: 0.8rem;
+  color: rgb(200, 200, 200);
+`;

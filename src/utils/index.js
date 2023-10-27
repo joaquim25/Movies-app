@@ -29,12 +29,13 @@ export const fetchUser = async (token) => {
 
 // MOVIES API--------------------------------------
 // Function to fetch movies based on a search parameter if given, otherwise return all
-export const fetchMovies = async (searchParam) => {
+export const fetchMovies = async (searchParam, page) => {
   try {
     const response = await axios.get(
       "https://x8ki-letl-twmt.n7.xano.io/api:Ughk0d_6/movie_movie_filter",
       {
         params: {
+          page: page,
           searchTerm: searchParam,
         },
       }

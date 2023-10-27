@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { DefaultInput } from "../../styles/GlobalStyledComponents";
 import { HeaderContainer, HeaderLinks } from "./HeaderStyles";
 import { updateSearchTerm } from "../../store/search/actions";
@@ -8,6 +8,13 @@ import { useDispatch } from "react-redux";
 export const Header = ({ hideSearchBar, links }) => {
   const [localSearchTerm, setLocalSearchTerm] = useState("");
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  //Resets the searchbar and results when the user navigates to other page
+  useEffect(() => {
+    dispatch(updateSearchTerm(""));
+    setLocalSearchTerm("");
+  }, [location.pathname]);
 
   // Search responsiveness has a timeout being reset each
   // time the user types, only triggering the searchTerm

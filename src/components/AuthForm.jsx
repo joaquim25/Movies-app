@@ -16,7 +16,7 @@ import { logIn } from "../store/user/actions";
 
 export const AuthForm = ({ onSubmit, fields, submitText, title }) => {
   const [submitRequest, setSubmitRequest] = useState({});
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({ name: "", email: "", password: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

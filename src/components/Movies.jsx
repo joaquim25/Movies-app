@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
-import { MoviesContainer, MoviesGrid } from "./MoviesStyles";
+import { MoviesContainer, MoviesGrid, PageButtons, PageInfo } from "./MoviesStyles";
 import { fetchMovies } from "../utils";
 import { useSelector } from "react-redux";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 export const Movies = ({
   permission = false,
@@ -13,15 +14,26 @@ export const Movies = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [pages, setPages] = useState({
+    currPage: 1,
+    nextPage: null,
+    prevPage: null,
+  });
   const searchTerm = useSelector((state) => state.search.searchTerm);
 
   // Fetch movies based on the search parameter, if given,
-  // triggers at start and at search value change
+  // triggers at start, refresh and at search value change
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const moviesData = await fetchMovies(searchTerm);
-        setMovies(moviesData);
+        const page = pages.currPage;
+        const moviesData = await fetchMovies(searchTerm, page);
+        setPages({
+          ...pages,
+          nextPage: moviesData.nextPage,
+          prevPage: moviesData.prevPage,
+        });
+        setMovies(moviesData.items);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -30,7 +42,20 @@ export const Movies = ({
     };
 
     getMovies();
-  }, [searchTerm]);
+  }, [searchTerm, pages.currPage]);
+
+  const onChangePage = (action) => {
+    switch (action) {
+      case "increment":
+        setPages({ ...pages, currPage: pages.currPage + 1 });
+        break;
+      case "decrement":
+        setPages({ ...pages, currPage: pages.currPage - 1 });
+        break;
+      default:
+        return;
+    }
+  };
 
   // Helper function to render a MovieCard component for each movie
   const renderMovieCard = (movie) => {
@@ -63,6 +88,22 @@ export const Movies = ({
         {error && <p>{error}</p>}
         {movies && movies.map(renderMovieCard)}
       </MoviesGrid>
+      <PageButtons>
+        {pages.prevPage && (
+          <button className='prevBtn' onClick={() => onChangePage("decrement")}>
+            <GrPrevious />
+          </button>
+        )}
+
+        {pages.nextPage && (
+          <button className='nextBtn' onClick={() => onChangePage("increment")}>
+            <GrNext />
+          </button>
+        )}
+      </PageButtons>
+      <PageInfo>
+        Page {pages.currPage} / {pages.nextPage || pages.currPage}
+      </PageInfo>
     </MoviesContainer>
   );
 };

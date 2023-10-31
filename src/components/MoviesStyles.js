@@ -50,7 +50,11 @@ export const PageButtons = styled.div`
     height: 30px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+
+    :hover {
+      box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+    }
 
     & svg {
       margin: 0 auto;

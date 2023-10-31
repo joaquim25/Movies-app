@@ -30,7 +30,6 @@ export const fetchUser = async (token) => {
 // MOVIES API--------------------------------------
 // Function to fetch movies based on a search parameter if given, otherwise return all
 export const fetchMovies = async (searchParam, page) => {
-  try {
     const response = await axios.get(
       "https://x8ki-letl-twmt.n7.xano.io/api:Ughk0d_6/movie_movie_filter",
       {
@@ -41,59 +40,39 @@ export const fetchMovies = async (searchParam, page) => {
       }
     );
     return response.data;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 // Function to fetch a movie by its ID
 export const getMovieById = async (movieId) => {
-  try {
     const response = await axios.get(`${API_BASE_URL}/movie_movie/${movieId}`);
     return response.data;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 //LIST API --------------------------------------------------------------------
 // Function to create a user's movie list
 export const createUserList = async (userId, listName) => {
-  try {
     const response = await axios.post(`${API_BASE_URL}/movie_list`, {
       movie_user_id: userId,
       name: listName,
       movies: null,
     });
     return response.data;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 // Function to fetch movies from a specific list
 export const fetchListMovies = async (listId) => {
-  try {
     const response = await axios.get(`${API_BASE_URL}/movie_list/${listId}`);
     return response.data.movies.movie_movie_id;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 // Function to fetch a movie-list record
 export const fetchList = async (listId) => {
-  try {
     const response = await axios.get(`${API_BASE_URL}/movie_list/${listId}`);
     return response.data;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 // Function to add movies to a specific list
 export const handleAddToList = async (selectedList, movieId) => {
-  try {
     const updatedList = { ...selectedList }; // Create a copy of the selectedList
 
     const moviesIdsInList = updatedList.movies.map(
@@ -120,13 +99,9 @@ export const handleAddToList = async (selectedList, movieId) => {
     );
 
     return response.data;
-  } catch (error) {
-    console.log("AddMovieToList error", error);
-  }
 };
 
 export const handleRemoveFromList = async (selectedList, newSelectedMovies) => {
-  try {
     // Prepare the data to be sent in the PATCH request
     const requestData = {
       movie_list_id: selectedList.id,
@@ -142,7 +117,4 @@ export const handleRemoveFromList = async (selectedList, newSelectedMovies) => {
     );
 
     return response.data;
-  } catch (error) {
-    console.log("RemoveFromList error", error);
-  }
 };

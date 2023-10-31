@@ -28,6 +28,7 @@ export const MoviePage = () => {
       try {
         const movieData = await getMovieById(movieId);
         setMovie(movieData);
+        console.log(movieData)
       } catch (error) {
         console.log(error);
       }

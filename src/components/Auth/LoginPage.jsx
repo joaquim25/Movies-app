@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthForm } from "../AuthForm";
+import { AuthForm } from "./AuthForm";
 
 export const LoginPage = () => {
   const fields = [

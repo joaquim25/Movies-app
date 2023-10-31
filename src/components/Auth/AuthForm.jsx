@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { AuthContainer, ExtraFormLinks, FormContainer } from "./AuthFormStyles";
 import {
   DefaultButton,
   DefaultInput,
-  FormContainer,
-  ExtraFormLinks,
-  AuthContainer,
   ErrorMessage,
   SuccessMessage,
-} from "../styles/GlobalStyledComponents";
+} from "../../styles/GlobalStyledComponents";
 import { Link, useNavigate } from "react-router-dom";
-import sideImg from "../assets/cinema-background.jpg";
-import { logIn } from "../store/user/actions";
+import sideImg from "../../assets/cinema-background.jpg";
+import { logIn } from "../../store/user/actions";
 
 export const AuthForm = ({ onSubmit, fields, submitText, title }) => {
   const [submitRequest, setSubmitRequest] = useState({});
